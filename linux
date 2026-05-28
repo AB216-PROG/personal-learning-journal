@@ -1,0 +1,45 @@
+# Bash Basics 
+
+2026-05-28
+
+## Commands Practiced
+
+```bash
+pwd
+cd
+ls
+mkdir
+touch
+rm
+cp
+```
+
+## What I did
+
+* Navigated directories using absolute and relative pathways
+* Created folders and nested directories
+* Created files with 'touch'
+* Copied files using 'cp'
+* Deleting files and directories
+
+## What confused me
+
+At first I didn't understand why:
+
+```bash
+rm directoryname
+```
+
+didn't work for deleting directories.
+
+Learned that:
+
+```bash
+rm -r directoryname
+```
+
+is needed for recursive deletion of directories.
+
+Also learned:
+- `rm` can be hazardous because files don't go to recycle bin
+- recursive deletion can remove entire directory trees

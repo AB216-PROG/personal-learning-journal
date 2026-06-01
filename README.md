@@ -1,4 +1,4 @@
-# Technical Journal
+# Learning Journal
 
 A repository containing:
 

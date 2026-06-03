@@ -1,0 +1,21 @@
+Bandit Levels 1-5
+
+Concepts encountered:
+- SSH access
+- File navigation
+- Hidden files
+- Special filenames
+- Shell escaping
+- Recursive file searching
+
+Key lessons:
+- Filenames can be interpreted as command options.
+- Hidden files require explicit display.
+- Escaping and quoting are essential when working with unusual filenames.
+- Search tools are often preferable to manual navigation.
+
+Areas for further study:
+- find
+- grep
+- du
+- file

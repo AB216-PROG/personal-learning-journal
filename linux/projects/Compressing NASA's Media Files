@@ -1,0 +1,109 @@
+# NASA Media Compression Project
+
+## Overview
+
+This Codecademy offline project focused on working with Linux compression and archiving tools. The goal was to organise media files and apply different compression methods using command-line utilities.
+
+---
+
+## Project Setup
+
+While downloading the project files, I also installed `iftop` and system updates. The updates took longer than expected, which reminded me that I should make greater use of background processes (using `&`) so I can continue working while long-running tasks complete.
+
+For downloading the project files, I used `wget -v` for the first time. The verbose output was reassuring because it allowed me to confirm that the command was running as expected and gave me greater visibility into the download process.
+
+I experimented with `iftop` during the download, but at my current level I found the output difficult to follow. The information updated too quickly for me to fully understand what I was seeing, even after generating some network traffic with `ping`. This is something I would like to revisit as my networking knowledge improves.
+
+After extracting the project files, I observed a mixture of media formats including `.jpg`, `.mp3`, and `.mp4` files.
+
+---
+
+## Task 1: Organising Photo Files
+
+The first objective was to create a `compressed_photos` directory and move all `.jpg` files into it.
+
+My initial attempt failed because I enclosed the wildcard pattern in quotation marks. After removing the quotes, the shell correctly expanded the wildcard and all image files were moved successfully.
+
+### Key Learning
+
+* Wildcards must be expanded by the shell, so quoting them can prevent them from functioning as intended.
+* Bulk file operations become much more efficient when using wildcard patterns correctly.
+
+---
+
+## Task 2: Compressing the Photo Directory
+
+The next task was to compress the new directory using `gzip`.
+
+I initially forgot to use the recursive option and encountered errors when trying to compress the directory. After consulting the manual page, I confirmed that recursive compression was required and corrected the command.
+
+### Key Learning
+
+* Directory compression often requires recursive options.
+* Checking the man page early can save significant troubleshooting time.
+
+---
+
+## Task 3: Creating a Compressed Video Archive
+
+The objective was to create a tar archive containing all `.mp4` files and apply `bz2` compression.
+
+My first attempt was:
+
+```bash
+tar -c videos.tar --remove-files *.mp4
+```
+
+After troubleshooting, I realised two important mistakes:
+
+1. I had omitted the `-f` option required to specify the archive filename.
+2. I had forgotten the `-j` option needed for `bz2` compression.
+
+Once these were added, the archive was created successfully.
+
+### Key Learning
+
+* Tar command options are highly dependent on combining the correct flags.
+* Understanding what each option does is more valuable than memorising command syntax.
+
+---
+
+## Task 4: Compressing Audio with XZ
+
+The final task was to compress the `.mp3` file using `xz`.
+
+Before attempting the task, I checked the manual page to verify the expected syntax. The command worked successfully on the first attempt.
+
+### Key Learning
+
+* Reviewing documentation before executing a command can prevent unnecessary mistakes.
+* Not every task requires troubleshooting when preparation is done well.
+
+---
+
+## Commands Practised
+
+| Command   | Purpose                                                       |
+| --------- | ------------------------------------------------------------- |
+| `wget -v` | Download files with verbose output for additional visibility. |
+| `iftop`   | Monitor network traffic and bandwidth usage.                  |
+| `ping`    | Generate and test network traffic.                            |
+| `mkdir`   | Create new directories.                                       |
+| `mv`      | Move files between directories.                               |
+| `gzip`    | Compress files and directories.                               |
+| `tar`     | Create and manage archive files.                              |
+| `xz`      | Apply high-ratio file compression.                            |
+| `man`     | Access command documentation and option references.           |
+| `&`       | Run processes in the background.                              |
+
+---
+
+## Reflection
+
+This project challenged me in ways I did not expect. I assumed that downloading and setting up the project files would be the most difficult part, but the compression and archiving tasks exposed several gaps in my understanding of command options and compression methods.
+
+The biggest lesson was the importance of consulting documentation rather than relying on memory. Most of my mistakes came from missing or incorrect flags rather than misunderstanding the overall objective.
+
+I also noticed that my troubleshooting process is becoming more structured. Rather than repeatedly guessing commands, I increasingly relied on the man pages to verify available options and understand why commands were failing.
+
+Although the project was relatively short, it was a productive exercise that reinforced file management, compression techniques, troubleshooting skills, and the habit of using documentation to solve problems independently.

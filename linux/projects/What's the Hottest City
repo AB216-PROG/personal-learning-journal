@@ -1,0 +1,142 @@
+# What's the Hottest City?
+
+## Overview
+
+This Codecademy off-platform project focused on using Bash scripting to collect weather data for multiple cities, process the results, and present them in a sorted format. The project reinforced my understanding of variables, loops, command substitution, and text processing while providing additional practice with common Linux utilities.
+
+---
+
+## Concepts and Commands Practised
+
+### Concepts
+
+* Variables
+* Arrays
+* Loops
+* Command substitution
+* Output redirection
+* Text processing
+
+### Commands
+
+| Command | Purpose                                             |
+| ------- | --------------------------------------------------- |
+| `touch` | Create new files.                                   |
+| `wget`  | Download project resources.                         |
+| `chmod` | Modify file permissions to make scripts executable. |
+| `sed`   | Process and clean command output.                   |
+| `cat`   | Display file contents to the terminal.              |
+| `sort`  | Sort data based on specified columns.               |
+
+---
+
+## Building the Script
+
+The objective was to gather weather data for a list of cities, extract the temperature values, and sort the results from hottest to coldest.
+
+I began by storing the target cities in an array and then used a loop to call the weather script for each location. The output was cleaned using `sed` before being written to a file for sorting.
+
+While the overall structure was straightforward, I encountered a couple of issues that required troubleshooting.
+
+---
+
+## Challenge 1: Loop Variable Not Being Used
+
+Initially, the script appeared to run successfully, but the output contained the same location three times instead of returning results for each city.
+
+The problem was that I had written:
+
+```bash
+echo $(./weather.sh -s)
+```
+
+instead of:
+
+```bash
+echo $(./weather.sh -s $city)
+```
+
+Because the city variable was missing, the script defaulted to using my current location each time the loop executed.
+
+### Key Learning
+
+* Small omissions in variable references can dramatically change program behaviour.
+* When debugging loops, it is important to verify that loop variables are being passed correctly to commands.
+
+---
+
+## Challenge 2: Incorrect `sed` Syntax
+
+After resolving the loop issue, I encountered an error while cleaning the temperature output.
+
+My original command was:
+
+```bash
+sed '/+//'
+```
+
+when it should have been:
+
+```bash
+sed 's/+//'
+```
+
+I had forgotten the substitution command (`s`), which caused the expression to be interpreted incorrectly.
+
+### Key Learning
+
+* Text-processing commands are often sensitive to small syntax errors.
+* Understanding the structure of a command is more reliable than attempting to remember it from memory.
+
+---
+
+## Improving the User Experience
+
+The project requirements were met once the temperatures were successfully collected and sorted. However, I was not completely satisfied with the final workflow because the user still needed to manually display the sorted output.
+
+To make the script more user-friendly, I added:
+
+```bash
+cat sorted_temperatures.txt
+```
+
+This allows the results to be displayed automatically as soon as the script finishes running.
+
+Although this was a small change, it made the script feel more complete and improved the overall user experience.
+
+### Key Learning
+
+* Finishing the requirements is only part of the task; considering usability can often lead to better solutions.
+* Small quality-of-life improvements can make scripts more intuitive to use.
+
+---
+
+## Final Script
+
+```bash
+#!/bin/bash
+
+cities=("London" "Edinburgh" "Glasgow")
+
+> temperatures.txt
+
+for city in ${cities[@]}
+do
+	sleep 1
+	./weather.sh -s $city | sed 's/+//' | sed 's/°C//' >> temperatures.txt
+done
+
+sort -k2 -r temperatures.txt > sorted_temperatures.txt
+
+cat sorted_temperatures.txt
+```
+
+---
+
+## Reflection
+
+This project highlighted how easy it is for small syntax mistakes to create unexpected behaviour. Neither of the issues I encountered were particularly complex, but both required careful reading of the code to identify what had gone wrong.
+
+One of the most valuable lessons was seeing how a missing variable reference and a single misplaced character in a `sed` command could completely change the output of an otherwise functional script. It reinforced the importance of checking assumptions and reviewing commands carefully when troubleshooting.
+
+I was pleased that I completed the project with minimal assistance and also took the opportunity to improve the final product beyond the stated requirements. While the script works as intended, I can already see opportunities for improvement and optimisation, making this a project I would like to revisit in the future as my Bash scripting skills continue to develop.

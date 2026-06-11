@@ -1,0 +1,39 @@
+Bandit Levels 6-10
+
+Concepts encountered:
+
+* Advanced file searching with `find`
+* File ownership and permissions
+* Standard error redirection
+* Pipes
+* Pattern matching with `grep`
+* Sorting data
+* Duplicate detection with `uniq`
+* Binary file inspection
+* String extraction from binaries
+
+Key lessons:
+
+* Search scope matters; a correct command can still fail if run in the wrong location.
+* `find` becomes significantly more powerful when combining filters such as size, ownership, type, and permissions.
+* Redirecting stderr with `2>/dev/null` can make command output much easier to interpret.
+* Pipes allow small, focused commands to be combined into powerful workflows.
+* `uniq` only works on adjacent duplicate lines, making sorting an important preprocessing step.
+* Understanding the type of data you're working with (text vs binary) helps determine which tools to use.
+* Reading manual pages carefully often reveals critical details that are easy to overlook.
+
+Challenges encountered:
+
+* Troubleshooting a `find` command that returned no results despite seemingly correct filters, eventually discovering the search scope was incorrect.
+* Initially misunderstanding how `uniq` processes duplicate lines.
+* Attempting text-processing approaches on binary data before identifying a more appropriate tool.
+
+Areas for further study:
+
+* sort
+* uniq
+* strings
+* file
+* stdin/stdout/stderr
+* shell pipelines
+* advanced `find` expressions

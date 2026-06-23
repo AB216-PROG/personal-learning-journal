@@ -1,0 +1,91 @@
+# TryHackMe – Metasploit: Meterpreter
+
+## Overview
+
+This room focused on establishing Meterpreter sessions and becoming familiar with common post-exploitation workflows, including enumeration, file discovery, and credential access techniques.
+
+---
+
+## Key Activities
+
+### HTTP Server Preparation
+
+Configured a local Python HTTP server to support payload delivery and file staging.
+
+**Workflow**
+
+1. Navigate to the appropriate directory.
+2. Start a Python HTTP server on port `9000`.
+3. Verify the server is accessible.
+
+**Key Learning**
+
+HTTP servers are a simple and effective method for transferring payloads and supporting post-exploitation activities.
+
+---
+
+### Initial Access
+
+Successfully established SSH access to the target system using provided credentials.
+
+**Workflow**
+
+1. Identify valid credentials.
+2. Connect to the target via SSH.
+3. Verify shell access.
+
+This initial foothold enabled further enumeration and post-exploitation activities.
+
+---
+
+## Challenges Encountered
+
+### Task Focus and Time Management
+
+I spent time attempting various environment and setup commands that ultimately did not contribute to the room objectives.
+
+Although the commands were useful from a learning perspective, they did not advance the exercise and consumed valuable time.
+
+**Key Learning**
+
+In practical assessments and timed environments, maintaining focus on the objective is just as important as technical knowledge.
+
+---
+
+## Lessons Learned
+
+* Prioritise task-relevant actions.
+* Avoid becoming distracted by unnecessary configuration changes.
+* Focus on the objective before exploring additional techniques.
+* Maintain awareness of time spent troubleshooting non-essential issues.
+
+---
+
+## Skills Developed
+
+* SSH access and remote administration
+* Meterpreter fundamentals
+* Post-exploitation workflows
+* File staging techniques
+* Objective-driven troubleshooting
+* Time management during assessments
+
+---
+
+## Next Steps
+
+* Explore Meterpreter post-exploitation modules in greater depth.
+* Practise process migration and privilege context switching.
+* Learn credential extraction workflows.
+* Develop efficient file search and exfiltration techniques.
+* Build repeatable post-exploitation checklists.
+
+---
+
+## Personal Reflection
+
+The technical aspects of this room were relatively straightforward. The biggest lesson for me was around focus and efficiency.
+
+I found myself experimenting with environment configuration and setup commands that, while interesting, were not necessary to complete the room objectives. This highlighted an important point: in practical exercises and assessments, time management and maintaining focus are critical skills.
+
+Going forward, I want to become more disciplined in separating exploration and experimentation from task completion, ensuring I achieve the objective first before investigating additional avenues.

@@ -1,0 +1,116 @@
+# TryHackMe – Blue Write-up
+
+## Overview
+
+**Platform:** TryHackMe
+**Room:** Blue
+**Category:** Windows Exploitation / SMB
+**Objective:** Identify and exploit a vulnerable Windows host to obtain administrative access and recover user credentials.
+
+---
+
+## Methodology
+
+### 1. Initial Enumeration
+
+A full TCP port scan was performed:
+
+```bash
+nmap -p- -T5 -v <TARGET_IP>
+```
+
+The following ports were discovered:
+
+| Port     | Service                 |
+| -------- | ----------------------- |
+| 135/tcp  | MSRPC                   |
+| 139/tcp  | NetBIOS Session Service |
+| 445/tcp  | SMB                     |
+| 3389/tcp | RDP                     |
+
+---
+
+### 2. Service Enumeration
+
+Targeted service and vulnerability detection was then performed:
+
+```bash
+nmap -p 135,139,445,3389 -sV --script vuln <TARGET_IP>
+```
+
+The scan identified:
+
+* Microsoft Windows host
+* SMBv1 enabled
+* Host vulnerable to **MS17-010 (EternalBlue)**
+
+Relevant finding:
+
+* **CVE-2017-0143**
+* Severity: Critical
+* Affected component: Microsoft SMBv1
+
+---
+
+## Exploitation
+
+The identified MS17-010 vulnerability was used to gain remote access to the target system within the controlled TryHackMe environment.
+
+Following successful exploitation, a Meterpreter session was established and system privileges were confirmed.
+
+```text
+NT AUTHORITY\SYSTEM
+```
+
+This indicated successful privilege escalation to the highest privilege level on the host.
+
+---
+
+## Post-Exploitation
+
+### Process Enumeration
+
+Running process enumeration identified active system processes and confirmed stable execution under SYSTEM privileges.
+
+### Credential Extraction
+
+Credential dumping identified a local user account:
+
+```text
+Jon
+RID: 1000
+NTLM Hash: [redacted]
+```
+
+The password hash was subsequently cracked, demonstrating the risk of weak password selection.
+
+---
+
+## Key Findings
+
+| Finding                | Risk     |
+| ---------------------- | -------- |
+| SMBv1 Enabled          | High     |
+| MS17-010 Vulnerability | Critical |
+| Weak User Password     | High     |
+
+---
+
+## Lessons Learned
+
+* Legacy protocols such as SMBv1 significantly increase attack surface.
+* Timely patching is essential to mitigate known vulnerabilities.
+* Weak passwords can allow attackers to move from system compromise to credential compromise.
+* Enumeration before exploitation is critical for identifying attack paths.
+
+---
+
+## Skills Demonstrated
+
+* Network enumeration with Nmap
+* Service fingerprinting
+* Vulnerability identification
+* Windows privilege validation
+* Post-exploitation enumeration
+* Credential analysis
+* Documentation and reporting
